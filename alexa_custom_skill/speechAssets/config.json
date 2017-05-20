@@ -1,0 +1,641 @@
+{
+  "intents": [
+    {
+      "name": "ActiveVASIntent",
+      "samples": [
+        "list my active vas",
+        "list my active value added services",
+        "list my active value added services for {PRODUCT_SLOT} "
+      ],
+      "slots": [
+        {
+          "name": "PRODUCT_SLOT",
+          "type": "LIST_OF_PRODUCT_SLOT",
+          "samples": [
+            "{PRODUCT_SLOT} "
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "ChangePlanIntent",
+      "samples": [
+        "i want to change my plan",
+        "i want to change my {PRODUCT_SLOT} plan"
+      ],
+      "slots": [
+        {
+          "name": "PRODUCT_SLOT",
+          "type": "LIST_OF_PRODUCT_SLOT",
+          "samples": [
+            "{PRODUCT_SLOT} "
+          ]
+        },
+        {
+          "name": "PLAN_SLOT",
+          "type": "LIST_OF_PLAN_SLOT",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "CheckBalanceIntent",
+      "samples": [
+        "what is my balance for {PRODUCT_SLOT}",
+        "tell me my balance"
+      ],
+      "slots": [
+        {
+          "name": "PRODUCT_SLOT",
+          "type": "LIST_OF_PRODUCT_SLOT",
+          "samples": [
+            "{PRODUCT_SLOT} "
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CheckBillIntent",
+      "samples": [
+        "what is my bill for {PRODUCT_SLOT}"
+      ],
+      "slots": [
+        {
+          "name": "PRODUCT_SLOT",
+          "type": "LIST_OF_PRODUCT_SLOT",
+          "samples": [
+            "{PRODUCT_SLOT} "
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ListPlanIntent",
+      "samples": [
+        "list plans"
+      ],
+      "slots": [
+        {
+          "name": "PRODUCT_SLOT",
+          "type": "LIST_OF_PRODUCT_SLOT",
+          "samples": [
+            "{PRODUCT_SLOT} "
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ListProductIntent",
+      "samples": [
+        "list products",
+        "list airtel products"
+      ],
+      "slots": []
+    },
+    {
+      "name": "ListVASIntent",
+      "samples": [
+        "list value added services",
+        "list vas"
+      ],
+      "slots": [
+        {
+          "name": "PRODUCT_SLOT",
+          "type": "LIST_OF_PRODUCT_SLOT",
+          "samples": [
+            "{PRODUCT_SLOT} "
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MNPIntent",
+      "samples": [
+        "i want to port my number"
+      ],
+      "slots": []
+    },
+    {
+      "name": "PayBillIntent",
+      "samples": [
+        "pay my {PRODUCT_SLOT} bill",
+        "pay bill"
+      ],
+      "slots": [
+        {
+          "name": "PRODUCT_SLOT",
+          "type": "LIST_OF_PRODUCT_SLOT",
+          "samples": [
+            "{PRODUCT_SLOT} "
+          ]
+        }
+      ]
+    },
+    {
+      "name": "RechargeFailureIntent",
+      "samples": [
+        "i recharged my phone but my account did not get credited",
+        "recharge failure"
+      ],
+      "slots": []
+    },
+    {
+      "name": "RechargeIntent",
+      "samples": [
+        "recharge my {PRODUCT_SLOT} service"
+      ],
+      "slots": [
+        {
+          "name": "PRODUCT_SLOT",
+          "type": "LIST_OF_PRODUCT_SLOT",
+          "samples": []
+        },
+        {
+          "name": "AMOUNT_SLOT",
+          "type": "AMAZON.NUMBER",
+          "samples": [
+            "{AMOUNT_SLOT} ",
+            "{AMOUNT_SLOT}  rupees"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "VASActionIntent",
+      "samples": [
+        "i want to {VAS_ACTION_SLOT} my {VAS_SLOT}"
+      ],
+      "slots": [
+        {
+          "name": "VAS_ACTION_SLOT",
+          "type": "LIST_OF_VAS_ACTION_SLOT",
+          "samples": [
+            "{VAS_ACTION_SLOT} "
+          ]
+        },
+        {
+          "name": "VAS_SLOT",
+          "type": "LIST_OF_VAS_SLOT",
+          "samples": []
+        },
+        {
+          "name": "PRODUCT_SLOT",
+          "type": "LIST_OF_PRODUCT_SLOT",
+          "samples": []
+        }
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "LIST_OF_PLAN_SLOT",
+      "values": [
+        {
+          "name": {
+            "value": "399"
+          }
+        },
+        {
+          "name": {
+            "value": "499"
+          }
+        },
+        {
+          "name": {
+            "value": "599"
+          }
+        },
+        {
+          "name": {
+            "value": "1099"
+          }
+        },
+        {
+          "name": {
+            "value": "1299"
+          }
+        }
+      ]
+    },
+    {
+      "name": "LIST_OF_PRODUCT_SLOT",
+      "values": [
+        {
+          "name": {
+            "value": "dth"
+          }
+        },
+        {
+          "name": {
+            "value": "prepaid"
+          }
+        },
+        {
+          "name": {
+            "value": "postpaid"
+          }
+        },
+        {
+          "name": {
+            "value": "broadband"
+          }
+        },
+        {
+          "name": {
+            "value": "wallet"
+          }
+        }
+      ]
+    },
+    {
+      "name": "LIST_OF_VAS_ACTION_SLOT",
+      "values": [
+        {
+          "name": {
+            "value": "activate"
+          }
+        },
+        {
+          "name": {
+            "value": "deactivate"
+          }
+        }
+      ]
+    },
+    {
+      "name": "LIST_OF_VAS_SLOT",
+      "values": [
+        {
+          "name": {
+            "value": "caller tune"
+          }
+        },
+        {
+          "name": {
+            "value": "cricket alert"
+          }
+        }
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Elicit.Intent-ActiveVASIntent.IntentSlot-PRODUCT_SLOT",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "for which product do you want the active VAS listed"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-ChangePlanIntent.IntentSlot-PRODUCT_SLOT",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "which service do you want to change the plan for - postpaid, dth, broadband"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-ChangePlanIntent.IntentSlot-PLAN_SLOT",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "which plan do you want"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-CheckBalanceIntent.IntentSlot-PRODUCT_SLOT",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "for which service do you want the balance - prepaid or wallet"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-CheckBillIntent.IntentSlot-PRODUCT_SLOT",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "which service do you want the bill for - postpaid, dth, broadband"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-ListPlanIntent.IntentSlot-PRODUCT_SLOT",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "for which product do you want the plans "
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-ListVASIntent.IntentSlot-PRODUCT_SLOT",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "for which product do you want the value added services listed"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-PayBillIntent.IntentSlot-PRODUCT_SLOT",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "which product do you wish to pay the bill for"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-RechargeIntent.IntentSlot-PRODUCT_SLOT",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "which service do you want to recharge - dth, prepaid"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-RechargeIntent.IntentSlot-AMOUNT_SLOT",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "how much do you want to recharge for"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-VASActionIntent.IntentSlot-VAS_ACTION_SLOT",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "please specify whether you to activate or deactivate service"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-VASActionIntent.IntentSlot-VAS_SLOT",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "please specify which service you want to activate or deactivate"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-VASActionIntent.IntentSlot-PRODUCT_SLOT",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "which airtel product do you want to change the VAS for"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "ActiveVASIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "PRODUCT_SLOT",
+            "type": "LIST_OF_PRODUCT_SLOT",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-ActiveVASIntent.IntentSlot-PRODUCT_SLOT"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ChangePlanIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "PRODUCT_SLOT",
+            "type": "LIST_OF_PRODUCT_SLOT",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-ChangePlanIntent.IntentSlot-PRODUCT_SLOT"
+            }
+          },
+          {
+            "name": "PLAN_SLOT",
+            "type": "LIST_OF_PLAN_SLOT",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-ChangePlanIntent.IntentSlot-PLAN_SLOT"
+            }
+          }
+        ]
+      },
+      {
+        "name": "CheckBalanceIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "PRODUCT_SLOT",
+            "type": "LIST_OF_PRODUCT_SLOT",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-CheckBalanceIntent.IntentSlot-PRODUCT_SLOT"
+            }
+          }
+        ]
+      },
+      {
+        "name": "CheckBillIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "PRODUCT_SLOT",
+            "type": "LIST_OF_PRODUCT_SLOT",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-CheckBillIntent.IntentSlot-PRODUCT_SLOT"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ListPlanIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "PRODUCT_SLOT",
+            "type": "LIST_OF_PRODUCT_SLOT",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-ListPlanIntent.IntentSlot-PRODUCT_SLOT"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ListProductIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": []
+      },
+      {
+        "name": "ListVASIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "PRODUCT_SLOT",
+            "type": "LIST_OF_PRODUCT_SLOT",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-ListVASIntent.IntentSlot-PRODUCT_SLOT"
+            }
+          }
+        ]
+      },
+      {
+        "name": "MNPIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": []
+      },
+      {
+        "name": "PayBillIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "PRODUCT_SLOT",
+            "type": "LIST_OF_PRODUCT_SLOT",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-PayBillIntent.IntentSlot-PRODUCT_SLOT"
+            }
+          }
+        ]
+      },
+      {
+        "name": "RechargeFailureIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": []
+      },
+      {
+        "name": "RechargeIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "PRODUCT_SLOT",
+            "type": "LIST_OF_PRODUCT_SLOT",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-RechargeIntent.IntentSlot-PRODUCT_SLOT"
+            }
+          },
+          {
+            "name": "AMOUNT_SLOT",
+            "type": "AMAZON.NUMBER",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-RechargeIntent.IntentSlot-AMOUNT_SLOT"
+            }
+          }
+        ]
+      },
+      {
+        "name": "VASActionIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "VAS_ACTION_SLOT",
+            "type": "LIST_OF_VAS_ACTION_SLOT",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-VASActionIntent.IntentSlot-VAS_ACTION_SLOT"
+            }
+          },
+          {
+            "name": "VAS_SLOT",
+            "type": "LIST_OF_VAS_SLOT",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-VASActionIntent.IntentSlot-VAS_SLOT"
+            }
+          },
+          {
+            "name": "PRODUCT_SLOT",
+            "type": "LIST_OF_PRODUCT_SLOT",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-VASActionIntent.IntentSlot-PRODUCT_SLOT"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
