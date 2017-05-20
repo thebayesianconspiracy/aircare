@@ -40,11 +40,17 @@ vpa_details = {
 
 vas = {
     'wallet' : '', 
-    'prepaid' : 'caller tune', 
+    'prepaid' : '', 
     'postpaid' : '',
     'dth' : 'free HD trial pack',
 }
 
+vaslist = {
+    'wallet' : ['autopay bills'], 
+    'prepaid' : ['caller tune', 'international roaming'], 
+    'postpaid' : ['international roaming'],
+    'dth' : ['free HD trial pack'],
+}
 
 app = Flask(__name__)
 ask = Ask(app, "/")
@@ -137,7 +143,7 @@ def getAccountBalance(product_slot):
             mapping={'product_slot':'PRODUCT_SLOT', 'vas_action_slot' : 'VAS_ACTION_SLOT', 'vas_slot' : 'VAS_SLOT'})
 def getAccountBalance(product_slot, vas_action_slot, vas_slot):
     mqttPayload = Payload(customer_id)
-    mqttPayload.setIntent('ActiveVASIntent')
+    mqttPayload.setIntent('VASActionIntent')
     client.publish(user_topic, json.dumps(mqttPayload.__dict__), qos=0)
     valid_products = ['wallet', 'prepaid', 'postpaid', 'dth']
     
@@ -160,6 +166,26 @@ def getAccountBalance(product_slot, vas_action_slot, vas_slot):
     else:
         return dialog().dialog_directive()
 
+@ask.intent('ListVASIntent',
+            mapping={'product_slot':'PRODUCT_SLOT'})
+def getAccountBalance(product_slot):
+    mqttPayload = Payload(customer_id)
+    mqttPayload.setIntent('ListVASIntent')
+    client.publish(user_topic, json.dumps(mqttPayload.__dict__), qos=0)
+    valid_products = ['wallet', 'prepaid', 'postpaid', 'dth']
+    
+    if product_slot is not None:
+        product_slot = product_slot.lower()
+        if product_slot in valid_products:
+            speech_text = render_template('vas_list', vas_list = ','.join(vaslist[product_slot]), product_slot=product_slot)
+            mqttPayload.setText(speech_text)
+        else:
+            speech_text = render_template('invalid_product')
+            mqttPayload.setText(speech_text)
+        client.publish(alexa_topic, json.dumps(mqttPayload.__dict__), qos=0)
+        return statement(speech_text).simple_card('AirCareResponse', speech_text)
+    else:
+        return dialog().dialog_directive()
 
 
 

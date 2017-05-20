@@ -30,6 +30,14 @@
       "samples": []
     },
     {
+      "name": "BillExcessIntent",
+      "samples": [
+        "my bill is more this month",
+        "my bill is wrong"
+      ],
+      "slots": []
+    },
+    {
       "name": "ChangePlanIntent",
       "samples": [
         "i want to change my plan",
@@ -154,7 +162,9 @@
     {
       "name": "RechargeIntent",
       "samples": [
-        "recharge my {PRODUCT_SLOT} service"
+        "recharge my {PRODUCT_SLOT} service",
+        "recharge my phone",
+        "recharge"
       ],
       "slots": [
         {
@@ -171,6 +181,13 @@
           ]
         }
       ]
+    },
+    {
+      "name": "SIMBlockIntent",
+      "samples": [
+        "please block my sim"
+      ],
+      "slots": []
     },
     {
       "name": "VASActionIntent",
@@ -285,6 +302,11 @@
         {
           "name": {
             "value": "cricket alert"
+          }
+        },
+        {
+          "name": {
+            "value": "international roaming"
           }
         }
       ]
@@ -455,6 +477,12 @@
         ]
       },
       {
+        "name": "BillExcessIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": []
+      },
+      {
         "name": "ChangePlanIntent",
         "confirmationRequired": false,
         "prompts": {},
@@ -601,6 +629,12 @@
             }
           }
         ]
+      },
+      {
+        "name": "SIMBlockIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": []
       },
       {
         "name": "VASActionIntent",

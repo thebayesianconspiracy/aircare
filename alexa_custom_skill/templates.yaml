@@ -8,3 +8,4 @@ vas_response : You have the {{content}} VAS active for your {{product_slot}} ser
 vas_no_response : You have no VAS active for your {{product_slot}} service.
 vas_activate : The {{vas_slot}} VAS for your {{product_slot}} service has been activated.
 vas_deactivate : The {{vas_slot}} VAS for your {{product_slot}} service has been deactivated.
+vas_list : The following are the VAS available for {{product_slot}}. {{vas_list}}
