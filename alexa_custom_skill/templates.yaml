@@ -1,1 +1,5 @@
-welcome : Hi, I am Voice Pay. How can I help?
+welcome : Hi, I am Air Care. How can I help?
+
+balance_response : Your balance for {{product_slot}} is {{balance}} rupees.
+
+invalid_product : Please select correct product for this request

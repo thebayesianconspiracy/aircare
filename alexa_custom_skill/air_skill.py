@@ -79,6 +79,26 @@ def launch():
     speech_text = render_template('welcome')
     return question(speech_text).reprompt(speech_text).simple_card('GringottsResponse', speech_text)
 
+@ask.intent('CheckBalanceIntent',
+            mapping={'product_slot':'PRODUCT_SLOT'})
+def getAccountBalance(product_slot):
+    mqttPayload = Payload(customer_id)
+    mqttPayload.setIntent('CheckBalanceIntent')
+    client.publish(user_topic, json.dumps(mqttPayload.__dict__), qos=0)
+    valid_products = ['wallet', 'prepaid']
+    if product_slot is not None:
+        if product_slot in valid_products:
+            speech_text = render_template('balance_response', balance=685, product_slot=product_slot)
+            mqttPayload.setText(speech_text)
+        else:
+            speech_text = render_template('invalid_product')
+            mqttPayload.setText(speech_text)
+        client.publish(alexa_topic, json.dumps(mqttPayload.__dict__), qos=0)
+        return statement(speech_text).simple_card('AirCareResponse', speech_text)
+    else:
+        return dialog().dialog_directive()
+
+
 
 @ask.session_ended
 def session_ended():
