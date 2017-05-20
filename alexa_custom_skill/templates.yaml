@@ -3,3 +3,8 @@ welcome : Hi, I am Air Care. How can I help?
 balance_response : Your balance for {{product_slot}} is {{balance}} rupees.
 
 invalid_product : Please select correct product for this request
+
+vas_response : You have the {{content}} VAS active for your {{product_slot}} service.
+vas_no_response : You have no VAS active for your {{product_slot}} service.
+vas_activate : The {{vas_slot}} VAS for your {{product_slot}} service has been activated.
+vas_deactivate : The {{vas_slot}} VAS for your {{product_slot}} service has been deactivated.
