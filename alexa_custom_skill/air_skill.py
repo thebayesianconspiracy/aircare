@@ -113,6 +113,33 @@ def getAccountBalance(product_slot):
     else:
         return dialog().dialog_directive()
 
+@ask.intent('BillExcessIntent', mapping={'product_slot':'PRODUCT_SLOT'})
+def complaintBillExcess(product_slot):
+    mqttPayload = Payload(customer_id)
+    mqttPayload.setIntent('BillExcessIntent')
+    mqttPayload.setSlots({'product_slot' : product_slot})
+    client.publish(user_topic, json.dumps(mqttPayload.__dict__), qos=0)
+    valid_products = ['prepaid', 'postpaid', 'dth']
+
+    if product_slot is not None:
+        product_slot = product_slot.lower()
+        if product_slot in valid_products:
+            if vas[product_slot]!='':
+                speech_text = render_template('excess_bill_response', content=vas[product_slot], product_slot=product_slot)
+                mqttPayload.setText(speech_text)
+            else :
+                speech_text = render_template('excess_bill_no_response', product_slot=product_slot)
+                mqttPayload.setText(speech_text)
+        else:
+            speech_text = render_template('invalid_product')
+            mqttPayload.setText(speech_text)
+        client.publish(alexa_topic, json.dumps(mqttPayload.__dict__), qos=0)
+        return statement(speech_text).simple_card('AirCareResponse', speech_text)
+    else:
+        return dialog().dialog_directive()
+
+    
+    
 
 @ask.intent('ActiveVASIntent',
             mapping={'product_slot':'PRODUCT_SLOT'})

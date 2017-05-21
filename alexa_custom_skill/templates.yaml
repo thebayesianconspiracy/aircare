@@ -11,3 +11,5 @@ vas_deactivate : The {{vas_slot}} VAS for your {{product_slot}} service has been
 vas_list : The following are the VAS available for {{product_slot}}. {{vas_list}}
 
 recharge_failure_reason: We have checked your account and your refund has not been credited. If any amount was deducted from your bank account, it will be credited back in 3 to 4 working days.
+
+excess_bill_response: 
