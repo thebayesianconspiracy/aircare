@@ -98,6 +98,7 @@ def launch():
 def getAccountBalance(product_slot):
     mqttPayload = Payload(customer_id)
     mqttPayload.setIntent('CheckBalanceIntent')
+    mqttPayload.setSlots({'product_slot' : product_slot})
     client.publish(user_topic, json.dumps(mqttPayload.__dict__), qos=0)
     valid_products = ['wallet', 'prepaid']
     if product_slot is not None:
@@ -118,6 +119,7 @@ def getAccountBalance(product_slot):
 def getAccountBalance(product_slot):
     mqttPayload = Payload(customer_id)
     mqttPayload.setIntent('ActiveVASIntent')
+    mqttPayload.setSlots({'product_slot' : product_slot})
     client.publish(user_topic, json.dumps(mqttPayload.__dict__), qos=0)
     valid_products = ['wallet', 'prepaid', 'postpaid', 'dth']
 
@@ -144,6 +146,7 @@ def getAccountBalance(product_slot):
 def getAccountBalance(product_slot, vas_action_slot, vas_slot):
     mqttPayload = Payload(customer_id)
     mqttPayload.setIntent('VASActionIntent')
+    mqttPayload.setSlots({'product_slot' : product_slot, 'vas_action_slot' : vas_action_slot, 'vas_slot' : vas_slot})
     client.publish(user_topic, json.dumps(mqttPayload.__dict__), qos=0)
     valid_products = ['wallet', 'prepaid', 'postpaid', 'dth']
 
