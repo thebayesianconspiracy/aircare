@@ -39,15 +39,15 @@ vpa_details = {
                 }
 
 vas = {
-    'wallet' : '', 
-    'prepaid' : '', 
+    'wallet' : '',
+    'prepaid' : '',
     'postpaid' : '',
     'dth' : 'free HD trial pack',
 }
 
 vaslist = {
-    'wallet' : ['autopay bills'], 
-    'prepaid' : ['caller tune', 'international roaming'], 
+    'wallet' : ['autopay bills'],
+    'prepaid' : ['caller tune', 'international roaming'],
     'postpaid' : ['international roaming'],
     'dth' : ['free HD trial pack'],
 }
@@ -120,7 +120,7 @@ def getAccountBalance(product_slot):
     mqttPayload.setIntent('ActiveVASIntent')
     client.publish(user_topic, json.dumps(mqttPayload.__dict__), qos=0)
     valid_products = ['wallet', 'prepaid', 'postpaid', 'dth']
-    
+
     if product_slot is not None:
         product_slot = product_slot.lower()
         if product_slot in valid_products:
@@ -146,7 +146,7 @@ def getAccountBalance(product_slot, vas_action_slot, vas_slot):
     mqttPayload.setIntent('VASActionIntent')
     client.publish(user_topic, json.dumps(mqttPayload.__dict__), qos=0)
     valid_products = ['wallet', 'prepaid', 'postpaid', 'dth']
-    
+
     if product_slot is not None:
         product_slot = product_slot.lower()
         if product_slot in valid_products:
@@ -173,7 +173,7 @@ def getAccountBalance(product_slot):
     mqttPayload.setIntent('ListVASIntent')
     client.publish(user_topic, json.dumps(mqttPayload.__dict__), qos=0)
     valid_products = ['wallet', 'prepaid', 'postpaid', 'dth']
-    
+
     if product_slot is not None:
         product_slot = product_slot.lower()
         if product_slot in valid_products:
@@ -187,6 +187,16 @@ def getAccountBalance(product_slot):
     else:
         return dialog().dialog_directive()
 
+@ask.intent('RechargeFailureIntent')
+def getFailureReason():
+    mqttPayload = Payload(customer_id)
+    mqttPayload.setIntent('RechargeFailureIntent')
+    client.publish(user_topic, json.dumps(mqttPayload.__dict__), qos=0)
+
+    speech_text = render_template('recharge_failure_reason')
+    mqttPayload.setText(speech_text)
+    client.publish(alexa_topic, json.dumps(mqttPayload.__dict__), qos=0)
+    return statement(speech_text).simple_card('AirCareResponse', speech_text)
 
 
 
