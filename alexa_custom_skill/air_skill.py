@@ -174,6 +174,7 @@ def getAccountBalance(product_slot, vas_action_slot, vas_slot):
 def getAccountBalance(product_slot):
     mqttPayload = Payload(customer_id)
     mqttPayload.setIntent('ListVASIntent')
+    mqttPayload.setSlots({'product_slot' : product_slot})
     client.publish(user_topic, json.dumps(mqttPayload.__dict__), qos=0)
     valid_products = ['wallet', 'prepaid', 'postpaid', 'dth']
 
