@@ -35,7 +35,13 @@
         "my bill is more this month",
         "my bill is wrong"
       ],
-      "slots": []
+      "slots": [
+        {
+          "name": "PRODUCT_SLOT",
+          "type": "LIST_OF_PRODUCT_SLOT",
+          "samples": [
+            "{PRODUCT_SLOT} "
+          ]
     },
     {
       "name": "ChangePlanIntent",
