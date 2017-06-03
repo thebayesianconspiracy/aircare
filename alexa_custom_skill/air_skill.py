@@ -124,12 +124,9 @@ def complaintBillExcess(product_slot):
     if product_slot is not None:
         product_slot = product_slot.lower()
         if product_slot in valid_products:
-            if vas[product_slot]!='':
-                speech_text = render_template('excess_bill_response', content=vas[product_slot], product_slot=product_slot)
-                mqttPayload.setText(speech_text)
-            else :
-                speech_text = render_template('excess_bill_no_response', product_slot=product_slot)
-                mqttPayload.setText(speech_text)
+            
+            speech_text = render_template('excess_bill_response', product_slot=product_slot)
+            mqttPayload.setText(speech_text)
         else:
             speech_text = render_template('invalid_product')
             mqttPayload.setText(speech_text)
@@ -201,6 +198,7 @@ def getAccountBalance(product_slot, vas_action_slot, vas_slot):
 def getAccountBalance(product_slot):
     mqttPayload = Payload(customer_id)
     mqttPayload.setIntent('ListVASIntent')
+    mqttPayload.setSlots({'product_slot' : product_slot})
     client.publish(user_topic, json.dumps(mqttPayload.__dict__), qos=0)
     valid_products = ['wallet', 'prepaid', 'postpaid', 'dth']
 
@@ -217,16 +215,30 @@ def getAccountBalance(product_slot):
     else:
         return dialog().dialog_directive()
 
-@ask.intent('RechargeFailureIntent')
-def getFailureReason():
+@ask.intent('RechargeFailureIntent', mapping={'product_slot':'PRODUCT_SLOT'})
+def complaintBillExcess(product_slot):
     mqttPayload = Payload(customer_id)
     mqttPayload.setIntent('RechargeFailureIntent')
+    mqttPayload.setSlots({'product_slot' : product_slot})
     client.publish(user_topic, json.dumps(mqttPayload.__dict__), qos=0)
+    valid_products = ['prepaid', 'dth', 'wallet']
 
-    speech_text = render_template('recharge_failure_reason')
-    mqttPayload.setText(speech_text)
-    client.publish(alexa_topic, json.dumps(mqttPayload.__dict__), qos=0)
-    return statement(speech_text).simple_card('AirCareResponse', speech_text)
+    if product_slot is not None:
+        product_slot = product_slot.lower()
+        if product_slot in valid_products:
+            if product_slot=='dth':
+                speech_text = render_template('recharge_dth_response', product_slot=product_slot)
+                mqttPayload.setText(speech_text)
+            else :
+                speech_text = render_template('recharge_other_response', product_slot=product_slot)
+                mqttPayload.setText(speech_text)
+        else:
+            speech_text = render_template('invalid_product')
+            mqttPayload.setText(speech_text)
+        client.publish(alexa_topic, json.dumps(mqttPayload.__dict__), qos=0)
+        return statement(speech_text).simple_card('AirCareResponse', speech_text)
+    else:
+        return dialog().dialog_directive()
 
 
 

@@ -10,6 +10,8 @@ vas_activate : The {{vas_slot}} VAS for your {{product_slot}} service has been a
 vas_deactivate : The {{vas_slot}} VAS for your {{product_slot}} service has been deactivated.
 vas_list : The following are the VAS available for {{product_slot}}. {{vas_list}}
 
-recharge_failure_reason: We have checked your account and your refund has not been credited. If any amount was deducted from your bank account, it will be credited back in 3 to 4 working days.
 
-excess_bill_response: 
+excess_bill_response: Your {{product_slot}} bill is indeed above your average. It turns out that your data cost from April fifth to April twentieth was added to your main balance. To avoid this in the future, check out our attractive data plans! 
+
+recharge_dth_response : We haven't yet recieved payment confirmation from your bank for your recent recharge. We will update you the status of your DTH recharge within twelve hours.
+recharge_other_response : We have recieved payment confirmation of your recent recharge. It will reflect in your {{product_slot}} service within an hour.
